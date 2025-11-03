@@ -45,6 +45,9 @@ export class AddonFormService {
         formControls[AddonFormControls.HostUrl] = this.formBuilder.control<string>('', Validators.required);
         formControls[AddonFormControls.PersonalAccessToken] = this.formBuilder.control<string>('', Validators.required);
         break;
+      case CredentialsFormat.AZURE_BLOB_STORAGE_ACCESS_TOKEN:
+        formControls[AddonFormControls.HostUrl] = this.formBuilder.control<string>('', Validators.required);
+        break;
     }
     return this.formBuilder.group(formControls as AddonForm);
   }
@@ -57,7 +60,9 @@ export class AddonFormService {
   ): AuthorizedAddonRequestJsonApi {
     const credentials: Record<string, unknown> = {};
     const initiateOAuth =
-      addon.credentialsFormat === CredentialsFormat.OAUTH2 || addon.credentialsFormat === CredentialsFormat.OAUTH;
+      addon.credentialsFormat === CredentialsFormat.OAUTH2 ||
+      addon.credentialsFormat === CredentialsFormat.OAUTH ||
+      addon.credentialsFormat === CredentialsFormat.AZURE_BLOB_STORAGE_ACCESS_TOKEN;
 
     switch (addon.credentialsFormat) {
       case CredentialsFormat.ACCESS_SECRET_KEYS:

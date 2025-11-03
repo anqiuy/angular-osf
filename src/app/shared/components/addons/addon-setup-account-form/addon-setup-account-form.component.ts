@@ -62,6 +62,10 @@ export class AddonSetupAccountFormComponent {
     return format === CredentialsFormat.OAUTH2 || format === CredentialsFormat.OAUTH;
   });
 
+  readonly isAzureBlobStorageAccessTokenFormat = computed(() => {
+    return this.addon().credentialsFormat === CredentialsFormat.AZURE_BLOB_STORAGE_ACCESS_TOKEN;
+  });
+
   handleSubmit(): void {
     if (!this.isFormValid) return;
 

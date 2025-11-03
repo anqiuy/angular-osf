@@ -90,6 +90,16 @@
       />
     }
 
+    @if (isAzureBlobStorageAccessTokenFormat()) {
+      <h2 class="mb-2">
+        {{ 'settings.addons.form.fields.hostUrl' | translate }}
+      </h2>
+      <p class="mb-2">
+        {{ 'settings.addons.form.fields.hostUrlDescription' | translate }}
+      </p>
+      <input class="mb-4" pInputText [formControlName]="formControls.HostUrl" />
+    }
+
     <h2 class="mb-2">
       {{ 'settings.addons.form.fields.accountName' | translate }}
     </h2>
